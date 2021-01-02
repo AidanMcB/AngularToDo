@@ -1,0 +1,7 @@
+<label>Another thing to do:</label>
+<input [(ngModel)]="newItem" placeholder="take the chickens for a walk">
+<button (click)="addItem($event)">Submit</button>
+<div class="todo-list-container">
+    <app-todo-item *ngFor="let todo of todoList" (click)="onSelect()"
+    [todoItem]="todo"></app-todo-item>
+</div>

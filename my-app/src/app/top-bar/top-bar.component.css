@@ -1,0 +1,7 @@
+
+.top-bar{
+    background-color: forestgreen;
+}
+.top-bar > p {
+    margin: 0 0 0 10px;
+}
