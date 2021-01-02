@@ -10,18 +10,21 @@ import { ToDoItem } from '../todo-item'
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  public todoList = TODO_ITEMS;
   @Output() submit: EventEmitter<string> = new EventEmitter();
-  public newItem: any;
+  
+  public todoList = TODO_ITEMS;
+  public newItemTest = '';
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  addItem(newItem: any): void {
-    // this.todoList.push(newItem)
-    console.log(newItem)
+  addItem(newItemVal: any): void {
+    //change string to fit object, add object to array of objects 
+    this.todoList.push(newItemVal)
+    console.log(newItemVal )
+    this.newItemTest = newItemVal
   }
 
   onSelect(): void {
