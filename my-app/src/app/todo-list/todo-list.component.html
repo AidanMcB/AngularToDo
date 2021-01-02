@@ -1,8 +1,8 @@
 <label>Another thing to do:</label>
 <input placeholder="take the chickens for a walk" #newItem>
 <button (click)="addItem(newItem.value)">Submit</button>
-<p>{{ newItemTest }} </p>
 <div class="todo-list-container">
     <app-todo-item *ngFor="let todo of todoList" (click)="onSelect()"
-    [todoItem]="todo"></app-todo-item>
+    [todoItem]="todo"
+    (deleteItem)="deleteTodoItem($event)"></app-todo-item>
 </div>

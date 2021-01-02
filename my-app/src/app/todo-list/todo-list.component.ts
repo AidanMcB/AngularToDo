@@ -13,22 +13,34 @@ export class TodoListComponent implements OnInit {
   @Output() submit: EventEmitter<string> = new EventEmitter();
   
   public todoList = TODO_ITEMS;
-  public newItemTest = '';
+  public newItem: ToDoItem = {id: 0, content: ''};
+  public deleteTodoId: number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  addItem(newItemVal: any): void {
+  addItem(newItemVal: string): void {
     //change string to fit object, add object to array of objects 
-    this.todoList.push(newItemVal)
-    console.log(newItemVal )
-    this.newItemTest = newItemVal
+
+    this.newItem.id = this.todoList[this.todoList.length - 1].id + 1
+    this.newItem.content = newItemVal
+    this.todoList.push(this.newItem)
+    this.newItem = {id: 0, content: ''}
+    console.log(this.newItem)
   }
 
   onSelect(): void {
-    console.log("Clicked this")
+    // console.log("Clicked this")
+  }
+
+  deleteTodoItem(todoItemId: number): void {
+    // console.log(todoItemId)
+    let del = this.todoList.find( item => item.id == todoItemId)!
+    let index = this.todoList.indexOf(del)
+    // console.log(del)
+    this.todoList.splice(index, 1)
   }
 
 }

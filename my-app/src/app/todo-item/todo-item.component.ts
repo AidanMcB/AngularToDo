@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 //import the interface of the todo-item
 import { ToDoItem } from '../todo-item'
 
@@ -9,16 +9,17 @@ import { ToDoItem } from '../todo-item'
 })
 export class TodoItemComponent implements OnInit {
 
-  constructor() { }
   @Input() public todoItem: any;
+  @Output() public deleteItem: EventEmitter<number> = new EventEmitter<number>();
 
-  public newItem: any;
+  constructor() { }
+  
 
   ngOnInit(): void {
   }
 
   delete(): void {
-    console.log("delete ", this.todoItem)
+    this.deleteItem.emit(this.todoItem.id)
   }
 
 }
