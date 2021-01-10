@@ -8,18 +8,26 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
 
 import { FormsModule } from '@angular/forms'; 
 
+import { ToDoService } from './to-do.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AddTodoComponent } from './add-todo/add-todo.component'
+
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TopBarComponent,
-    TodoItemComponent
+    TodoItemComponent,
+    AddTodoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    ToDoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

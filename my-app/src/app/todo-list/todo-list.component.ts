@@ -1,8 +1,9 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 // import Mock todo items
-import { TODO_ITEMS } from '../mock-todo-items'
+//import { TODO_ITEMS } from '../mock-todo-items'
 // to do item interface
-import { ToDoItem } from '../todo-item'
+//import { ToDoItem } from '../todo-item'
+import { ToDoService } from '../to-do.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,27 +13,45 @@ import { ToDoItem } from '../todo-item'
 export class TodoListComponent implements OnInit {
   @Output() submit: EventEmitter<string> = new EventEmitter();
   
-  public todoList = TODO_ITEMS;
-  public newItem: ToDoItem = {id: 0, content: ''};
-  public deleteTodoId: number = 0;
+  // public todoList = TODO_ITEMS;
+  // public deleteTodoId: number = 0;
+  public currentTodo: any;                  //currentJogging
+  public todoList: Array<any> = [];         //joggingData
 
-  constructor() { }
+  constructor(private todoService: ToDoService) { 
+    todoService.get().subscribe((data: any) => this.todoList = data);
+  }
+
+  private setInitialValusForToDoData () {
+    return {
+      id: undefined,
+      content: ''
+    }
+  }
 
   ngOnInit(): void {
   }
 
-  addItem(newItemVal: string): void {
+  //addItem(newItemVal: string): void {
     //change string to fit object, add object to array of objects 
+    // this.newItem.id = this.todoList[this.todoList.length - 1].id + 1
+    // this.newItem.content = newItemVal
+    // this.todoList.push(this.newItem)
+    // this.newItem = {id: 0, content: ''}
+    // console.log(this.newItem)
 
-    this.newItem.id = this.todoList[this.todoList.length - 1].id + 1
-    this.newItem.content = newItemVal
-    this.todoList.push(this.newItem)
-    this.newItem = {id: 0, content: ''}
-    console.log(this.newItem)
-  }
+  //}
 
   onSelect(): void {
     // console.log("Clicked this")
+  }
+
+  addOrUpdateToDo(todo: any) {
+    console.log(todo)
+    // this.todoService.update(todo).subscribe(
+    //   => this.todoList.push(todo)
+    // )
+
   }
 
   deleteTodoItem(todoItemId: number): void {

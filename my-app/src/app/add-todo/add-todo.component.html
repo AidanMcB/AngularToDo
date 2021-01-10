@@ -1,0 +1,12 @@
+<div>
+    <h2></h2>
+    <form>
+        <div class="form-group">
+            <label>New To Do:</label>
+            <input type="text" [(ngModel)]="newToDo.content" 
+            [ngModelOptions]="{standalone: true}" class="form-control" />
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addToDo($event);">Save</button>
+
+    </form>
+   </div>
